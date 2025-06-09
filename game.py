@@ -10,7 +10,7 @@ root.title("Number guessing game")
 title_font = ("Arial", 10)
 
 l1 = Label(root ,  text="select the range", font=title_font)
-l1.grid(column=2,row=0)
+l1.grid(column=1,row=0)
 
 ln = Label(root ,  text="select minimum", font=title_font)
 ln.grid(column=0,row=1)
@@ -36,7 +36,7 @@ def play():
         min = int(n)
         num = randint(min,max)
         gs = 0
-    res.config(text="You have {chn} guesses")
+    res.config(text=f"You have {chn} guesses")
     
 
 
@@ -50,9 +50,9 @@ def guessing():
     gs += 1
     guess = int(txtg.get())
     if guess == num :
-        ch =  "Correct! The number is {num}. You guessed it in {gs} attempts."
+        ch =  f"Correct! The number is {num}. You guessed it in {gs} attempts."
     elif gs >= chn and guess != num :
-        ch = "Sorry! The number was {num}. Better luck next time."
+        ch = f"Sorry! The number was {num}. Better luck next time."
     elif guess > num :
         ch = "Too high !"
     elif guess < num :
@@ -64,7 +64,7 @@ def guessing():
 
 
 bts = Button(root,text="Start",command= play )
-bts.grid(column=2,row=3)
+bts.grid(column=1,row=3)
 
 l2 = Label(root,)
 
@@ -80,9 +80,9 @@ chn = 7
 gs = 0
 ch = "you have 7 guesses"
 res = Label(root,text=ch, font=title_font)
-res.grid(column=2,row=5)
+res.grid(column=1,row=5)
 
 
 btq = Button(root ,text="Quit",command=root.destroy)
-btq.grid(column=2,row=20)
+btq.grid(column=1,row=6)
 root.mainloop()
