@@ -4,7 +4,7 @@ from tkinter import messagebox
 from random import randint
 
 root = Tk()
-root.geometry('350x300')
+root.geometry('450x300')
 root.title("Number guessing game")
 
 title_font = ("Arial", 10)
@@ -31,25 +31,34 @@ def play():
     elif not((n.isdecimal())) or not(m.isdecimal()) :
         messagebox.showerror("Invalid Input", "Please enter a number!")
     else:
-        global num
+        global num,gs
         max = int(m)
         min = int(n)
         num = randint(min,max)
-        
+        gs = 0
+    res.config(text="You have {chn} guesses")
+    
+
 
 def guessing():
-    while gs < chn :
-        gs += 1
-        guess = int(txtg.get())
+    global gs,ch
+    
+    guessc = txtg.get()
+    if guessc == "" or not(guessc.isdecimal()):
+        messagebox.showerror("Invalid Input", "Please enter a valid number!")
 
-        if guess == num :
-            ch =  "Correct! The number is {num}. You guessed it in {gs} attempts."
-        elif gs >= chn and guess != num :
-            ch = "Sorry! The number was {num}. Better luck next time."
-        elif guess > num :
-            ch = "Too high !"
-        elif guess < num :
-            ch = "Too low !"
+    gs += 1
+    guess = int(txtg.get())
+    if guess == num :
+        ch =  "Correct! The number is {num}. You guessed it in {gs} attempts."
+    elif gs >= chn and guess != num :
+        ch = "Sorry! The number was {num}. Better luck next time."
+    elif guess > num :
+        ch = "Too high !"
+    elif guess < num :
+        ch = "Too low !"
+
+    res.config(text=ch)
 
 
 
