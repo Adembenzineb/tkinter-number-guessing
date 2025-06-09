@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from random import randint
 
 root = Tk()
 root.geometry('350x300')
@@ -27,16 +28,50 @@ def play():
 
     if n == "" or m == "" :
         messagebox.showerror("Invalid Input", "Please enter a number!")
-    elif not(n.isdecimal) or not(m.isdecimal) :
+    elif not((n.isdecimal())) or not(m.isdecimal()) :
         messagebox.showerror("Invalid Input", "Please enter a number!")
     else:
+        global num
         max = int(m)
         min = int(n)
+        num = randint(min,max)
+        
+
+def guessing():
+    while gs < chn :
+        gs += 1
+        guess = int(txtg.get())
+
+        if guess == num :
+            ch =  "Correct! The number is {num}. You guessed it in {gs} attempts."
+        elif gs >= chn and guess != num :
+            ch = "Sorry! The number was {num}. Better luck next time."
+        elif guess > num :
+            ch = "Too high !"
+        elif guess < num :
+            ch = "Too low !"
+
+
 
 
 bts = Button(root,text="Start",command= play )
 bts.grid(column=2,row=3)
 
+l2 = Label(root,)
+
+lg = Label(root ,text="Enter your guess :", font=title_font)
+lg.grid(column=0,row=4)
+txtg = Entry(root,width=5)
+txtg.grid(column=1,row=4)
+
+bte = Button(root,text="Enter",command= guessing)
+bte .grid(column=2,row=4)
+
+chn = 7
+gs = 0
+ch = "you have 7 guesses"
+res = Label(root,text=ch, font=title_font)
+res.grid(column=2,row=5)
 
 
 btq = Button(root ,text="Quit",command=root.destroy)
